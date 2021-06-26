@@ -2,7 +2,7 @@
 a simple utility scripts for copying, moving, and deleting Minecraft Regions (2dr and 3dr all vertically) within a user's specified bounding box for the [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) world.
 
 ## Requirements
-- Python 3.x
+- Python 3.x (recent versions)
 
 
 ## Usage
