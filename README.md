@@ -22,4 +22,4 @@ or:
 
 #### Misc
 
-- `JourneyMapCopyPNG.py` - copies all 2drs and 3drs files from user specified bounding box to
+- `JourneyMapCopyPNG.py` - copies all 2drs and 3drs files from user specified bounding box to `./DIM0_Output/day`.
