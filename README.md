@@ -18,14 +18,6 @@ or: (this is is especially true on macs, where you also need to install python3)
 - input minimum and maximum X and Z coordinates in 2dr space in which will be affected by the operation (Minecraft Region)
 - optionaly, choose vertical range which you want to affect, skip this if you want everything to be processed vertically from top to bottom.
 
-
-## Scripts
-- `ccRegionCopy.py` - copies all 2drs and 3drs files from user specified bounding box to `./region2dOutput/` and `./region3dOutput/` in world folder.
-
-- `ccRegionMove.py` - moves all 2drs and 3drs files from user specified bounding box to `./region2dOutput/` and `./region3dOutput/` in world folder.
-
-- `ccRegionMove.py` - deletes all 2drs and 3drs files from user specified bounding box from `./region2d/` and `./region3d/` in world folder.
-
 ##  Example of the program
 <details> <summary>SPOILER</summary> 
 
