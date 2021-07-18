@@ -10,8 +10,8 @@ This tool is only for the __1.12.2__ [Cubic Chunks](https://github.com/OpenCubic
 - place the script into your world folder
 - run the script from console by:
 ```python ccRegionManipulate.py```
-or: (this is is especially true on macs, where you also need to install python3)
-```python3 ccRegionManipulate.py```
+or:
+```python3 ccRegionManipulate.py``` - (this is is especially true on macs, where you also need to install python3)
 
 ### Usage
 - choose one of the operation mods, either `copy` `move` or `delete`
