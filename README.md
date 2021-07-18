@@ -15,7 +15,7 @@ or: (this is is especially true on macs, where you also need to install python3)
 
 ### Usage
 - choose one of the operation mods, either `copy` `move` or `delete`
-- input `minimum and maximum X and Z` coordinates in 2dr space in which will be affected by the operation (Minecraft Region)
+- input `minimum and maximum X and Z` coordinates in 2dr space area which will be processed by the program (Minecraft Region)
 - optionaly, choose vertical range which you want to affect, skip this if you want everything to be processed vertically from top to bottom.
 
 ##  Example of the program
