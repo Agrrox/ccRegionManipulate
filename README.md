@@ -6,13 +6,18 @@ This tool is only for the __1.12.2__ [Cubic Chunks](https://github.com/OpenCubic
 - Python 3.x (recent versions)
 
 
-## Usage
+## Starting the program
 - place the script into your world folder
 - run the script from console by:
-```python scriptname.py```
-or:
-```python3 scriptname.py```
-- input minimum and maximum X and Z coordinates in 2dr Space (Minecraft Region)
+```python ccRegionManipulate.py```
+or: (this is is especially true on macs, where you also need to install python3)
+```python3 ccRegionManipulate.py```
+
+### Usage
+- choose one of the operation mods, either copy move or delete
+- input minimum and maximum X and Z coordinates in 2dr space in which will be affected by the operation (Minecraft Region)
+- optionaly, choose vertical range which you want to affect, skip this if you want everything to be processed vertically from top to bottom.
+
 
 ## Scripts
 - `ccRegionCopy.py` - copies all 2drs and 3drs files from user specified bounding box to `./region2dOutput/` and `./region3dOutput/` in world folder.
@@ -21,6 +26,40 @@ or:
 
 - `ccRegionMove.py` - deletes all 2drs and 3drs files from user specified bounding box from `./region2d/` and `./region3d/` in world folder.
 
-#### Misc
+##  Example of the program
+<details> <summary>SPOILER</summary> 
+```
+macbooks-MacBook-Pro:~ macbook$ python3 /Applications/Games/Minecraft\ Tools/Minecraft-Overviewer-CC/inputs/Backup--TerraPreGenerated--2021-06-28--03-30/ccRegionManipulate_mc1.12.2.py 
+================================================================================
+ccRegionManipulate for Cubic Chunks 1.12.2.
+Copy, move or delete Minecraft regions in specific range.
+to use this program, please put this script into your world folder
+Make sure you have backups before doing anything!
+You might need to fix the light using cc worldfixer after some operations.
+================================================================================
+Possible operation modes:
+'c' = copy regions | 'm' = move regions | 'd' = delete regions
+Choose an operation mode: c
+'copy' mode was selected.
+--------------------------------------------------------------------------------
+Input coordinates in 2dr space (Minecraft region coordinates):
+min x: 20
+max x: 200
+min z: 10
+max z: 300
+The bounding box is '181x291' large in 2dr space
+--------------------------------------------------------------------------------
+[optional]: Do you want to set vertical range in 3dr (cube) space? (n/y)
+(if you don't, all cubes vertically will be processed) n
+Vertical range limit was not set
+--------------------------------------------------------------------------------
+Total number of 2dr files to be processed: 241
+Total number of 3dr files to be processed: 1670
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+The copy operation will be executed in '/users/username/minecraft/New World/'
+Do you want to start the copy process? (y/n) 
 
-- `JourneyMapCopyPNG.py` - copies all maptile PNGs from user specified bounding box to `./DIM0_Output/day`.
+```
+
+</details>
