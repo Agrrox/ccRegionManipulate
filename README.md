@@ -19,9 +19,9 @@ or:
 ### Usage
 - choose one of the operation mods, either `copy` `move` or `delete`
 - input `minimum and maximum X and Z` coordinates in 2dr space area (in Minecraft Region coordinates) which will be processed by the program
-- optionaly, choose vertical range which you want to affect, skip this if you want everything to be processed vertically from top to bottom.
+- [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
 
-##  Example of the program
+##  Example of usage of the program
 <details> <summary>SPOILER</summary> 
 
   ```
