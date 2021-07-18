@@ -94,6 +94,8 @@ if verticalLimit == True:
 else:
     print("Vertical range limit was not set")
 
+print(f"verticalLimit is: {verticalLimit}")
+
 # define variables for counting processed files
 count2dr = 0
 count3dr = 0
@@ -144,7 +146,7 @@ for file in files3dr:
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
-            if not(yMinRange or yMaxRange):
+            if (not yMinRange or not yMaxRange):
                 continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
             count3dr = (count3dr + 1)
@@ -234,7 +236,7 @@ for file in files3dr:
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
-            if not(yMinRange or yMaxRange):
+            if (not yMinRange or not yMaxRange):
                 continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
             if operationMode == "c":
