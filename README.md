@@ -30,7 +30,7 @@ or: (this is is especially true on macs, where you also need to install python3)
 <details> <summary>SPOILER</summary> 
 
   ```
-macbooks-MacBook-Pro:~ macbook$ python3 /Applications/Games/Minecraft\ Tools/Minecraft-Overviewer-CC/inputs/Backup--TerraPreGenerated--2021-06-28--03-30/ccRegionManipulate_mc1.12.2.py 
+user$ python3 /users/username/minecraft/New World/ccRegionManipulate_mc1.12.2.py 
 ================================================================================
 ccRegionManipulate for Cubic Chunks 1.12.2.
 Copy, move or delete Minecraft regions in specific range.
