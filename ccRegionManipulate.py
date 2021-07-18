@@ -1,10 +1,11 @@
 import os
-import pathlib
-import shutil
-import time
+import pathlib # create directories
+import shutil # copy files
+import time # process timer
 
 # change working directory to directory of this file
 os.chdir(os.path.dirname(__file__))
+workingDirectory = os.getcwd()
 
 terminalSize = os.get_terminal_size()
 print("=" * terminalSize.columns)
@@ -65,7 +66,7 @@ while True:
     if xMin <= xMax and zMin <= zMax:
         break
 
-# prints size of X and Z range
+# prints size of X and Z 2dr range
 xBoundingBox = abs((xMax - xMin) + 1)
 zBoundingBox = abs((zMax - zMin) + 1)
 print(f"The bounding box is '{xBoundingBox}x{zBoundingBox}' large in 2dr space")
@@ -86,7 +87,7 @@ if input("[optional]: Do you want to set vertical range in 3dr (cube) space? (n/
             verticalLimit = True
             break
     
-# prints size of Y range
+# prints size of Y 3dr range
 if verticalLimit == True:
     yBoundingBox = abs((yMax - yMin) + 1) 
     print(f"Vertical limit range was set as: '{yBoundingBox}' 3dr cubes.\nminimum y 3dr: '{yMin}'.\n maximum y 3dr: '{yMax}'.")
@@ -100,14 +101,18 @@ count3dr = 0
 # define lists for user input range that will be looped 
 list2drInput = []
 list3drInput = []
-
 # get list of files in input directories # ! apply .2dr and 3.dr filter?
 files2dr = os.listdir("./region2d")
 files3dr = os.listdir("./region3d")
 
+# define Ouput lists
+list2drOutput = []
+list3drOutput = []
 # get list of files in output directories # ! apply .2dr and 3.dr filter?
-list2drOutput = os.listdir("./region2dOutput")
-list3drOutput = os.listdir("./region3dOutput")
+if os.path.isfile("./region2dOutput"):
+    list2drOutput = os.listdir("./region2dOutput")
+if os.path.isfile("./region3dOutput"):
+    list3drOutput = os.listdir("./region3dOutput")
 
 
 # loop 2dr to count all files for info report and file comparison
@@ -135,9 +140,12 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
+        # treatment if user set a vertical range
         if verticalLimit == True:
-            yMinRange = (y >= yMin) # ! vertical bounding box // is this correct?
-            yMaxRange = (y <= yMax) # ! vertical bounding box // is this correct?
+            yMinRange = (y >= yMin)
+            yMaxRange = (y <= yMax)
+            if not(yMinRange or yMaxRange):
+                continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
             count3dr = (count3dr + 1)
             list3drInput.append(file)
@@ -149,38 +157,38 @@ if operationMode == "c" or operationMode == "m":
     pathlib.Path(files2drOutput).mkdir(parents=True, exist_ok=True)
     pathlib.Path(files3drOutput).mkdir(parents=True, exist_ok=True)
 
-# prompts to print all files that will be overwritten
-print("-" * terminalSize.columns)
-if input(f"Do you want to print list of files that will be overwritten? (the list may be very long) (y/n) ") == "y": # ! this is giving me opposite result
-    # 2dr list 
-    matches2dr=[]
-    for item_a in list2drInput:
-        for item_b in list2drOutput:
-            if item_a == item_b:
-                matches2dr.append(item_a)
-    print("2dr files:")
-    print(matches2dr)
-    # 3dr list
-    matches3dr=[]
-    for item_a in list3drInput:
-        for item_b in list3drOutput:
-            if item_a == item_b:
-                matches3dr.append(item_a)
-    print("3dr files:")
-    print(matches3dr)
-
 print("-" * terminalSize.columns)
 # print looped files from the lists that will be processed
 print(f"Total number of 2dr files to be processed: {count2dr}")
 print(f"Total number of 3dr files to be processed: {count3dr}")      
 
 # check for existing files in output directories and prompt user
+print("-" * terminalSize.columns)
 if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
     print("Same files were found in input and output directories. ('./region2dOutput/' and './region3dOutput/'.")
     print("Files will be overwritten.")
+    # prompts to print all files that will be overwritten # ! add condition when there are actuall files to be overwritten
+    if input(f"Do you want to print list of files that will be overwritten? (the list may be very long) (y/n) ") == "y":
+        # 2dr list 
+        matches2dr=[]
+        for item_a in list2drInput:
+            for item_b in list2drOutput:
+                if item_a == item_b:
+                    matches2dr.append(item_a)
+        print("2dr files:")
+        print(matches2dr)
+        # 3dr list
+        matches3dr=[]
+        for item_a in list3drInput:
+            for item_b in list3drOutput:
+                if item_a == item_b:
+                    matches3dr.append(item_a)
+        print("3dr files:")
+        print(matches3dr)
 
-print("-" * terminalSize.columns)
 # prompt to start the file processing
+print("-" * terminalSize.columns)
+print(f"The {operationModeString} operation will be executed in '{workingDirectory}'")
 if input(f"Do you want to start the {operationModeString} process? (y/n) ") != "y":
     print("Program terminated.")
     exit()
@@ -222,9 +230,12 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
+        # treatment if user set a vertical range
         if verticalLimit == True:
-            yMinRange = (y >= yMin) # ! vertical limit // is this working correctly?
-            yMaxRange = (y <= yMax) # ! vertical limit // is this working correctly?
+            yMinRange = (y >= yMin)
+            yMaxRange = (y <= yMax)
+            if not(yMinRange or yMaxRange):
+                continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
             if operationMode == "c":
                 print(f"Copying: {x}.{y}.{z}.3dr")
