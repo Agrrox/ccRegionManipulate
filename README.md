@@ -14,8 +14,8 @@ or: (this is is especially true on macs, where you also need to install python3)
 ```python3 ccRegionManipulate.py```
 
 ### Usage
-- choose one of the operation mods, either copy move or delete
-- input minimum and maximum X and Z coordinates in 2dr space in which will be affected by the operation (Minecraft Region)
+- choose one of the operation mods, either `copy` `move` or `delete`
+- input `minimum and maximum X and Z` coordinates in 2dr space in which will be affected by the operation (Minecraft Region)
 - optionaly, choose vertical range which you want to affect, skip this if you want everything to be processed vertically from top to bottom.
 
 ##  Example of the program
