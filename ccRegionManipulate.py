@@ -3,7 +3,7 @@ import pathlib # create directories
 import shutil # copy files
 import time # process timer
 
-# change working directory to directory of this file
+# change working directory to directory of this file, then return it
 os.chdir(os.path.dirname(__file__))
 workingDirectory = os.getcwd()
 
@@ -15,7 +15,7 @@ print("to use this program, please put this script into your world folder")
 print("Make sure you have backups before doing anything!")
 print("You might need to fix the light using cc worldfixer after some operations.")
 
-# user selects from operation modes
+# loop for user choosing from operation modes
 print("=" * terminalSize.columns)
 print(f"Possible operation modes:")
 print("'c' = copy regions | 'm' = move regions | 'd' = delete regions")
@@ -36,7 +36,7 @@ while True:
     else:
         print(f"Please select a valid operation mode!")
 
-# function to check for non-integer input
+# loop function to check for non-integer input
 def integerInput(text):
     while True:
         try:
@@ -45,7 +45,7 @@ def integerInput(text):
             print("Whole number, please")
             continue
 
-# user input for X and Z 2dr coordinates
+# loop, user input for X and Z 2dr range
 print("-" * terminalSize.columns)
 print("Input coordinates in 2dr space (Minecraft region coordinates):")
 while True:
@@ -71,7 +71,7 @@ xBoundingBox = abs((xMax - xMin) + 1)
 zBoundingBox = abs((zMax - zMin) + 1)
 print(f"The bounding box is '{xBoundingBox}x{zBoundingBox}' large in 2dr space")
 
-# optional user input for Y 3dr coordinates
+# optional user input for Y 3dr range
 print("-" * terminalSize.columns)
 verticalLimit = False
 if input("[optional]: Do you want to set vertical range in 3dr (cube) space? (n/y)\n(if you don't, all cubes vertically will be processed) ") == "y":
@@ -100,24 +100,24 @@ print(f"verticalLimit is: {verticalLimit}")
 count2dr = 0
 count3dr = 0
 
-# define lists for user input range that will be looped 
+# define lists for looping from user input range
 list2drInput = []
 list3drInput = []
-# get list of files in input directories # ! apply .2dr and 3.dr filter?
+# get list of files from the input directories # ! apply .2dr and 3.dr filter?
 files2dr = os.listdir("./region2d")
 files3dr = os.listdir("./region3d")
 
 # define Ouput lists
 list2drOutput = []
 list3drOutput = []
-# get list of files in output directories # ! apply .2dr and 3.dr filter?
+# get list of files from the output directories # ! apply .2dr and 3.dr filter?
 if os.path.isfile("./region2dOutput"):
     list2drOutput = os.listdir("./region2dOutput")
 if os.path.isfile("./region3dOutput"):
     list3drOutput = os.listdir("./region3dOutput")
 
 
-# loop 2dr to count all files for info report and file comparison
+# loop 2dr files, count files
 for file in files2dr:
     if (file.endswith(".2dr")):
         split = file.split(".")
@@ -128,10 +128,11 @@ for file in files2dr:
         zMinRange = (z >= zMin)
         zMaxRange = (z <= zMax)
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+            # file counting
             count2dr = (count2dr + 1)
             list2drInput.append(file)
 
-# loop 3dr to count all files for info report and file comparison
+# loop 3dr files, count files
 for file in files3dr:
     if (file.endswith(".3dr")):
         split = file.split(".")
@@ -142,13 +143,14 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
-        # treatment if user set a vertical range
+        # range filter when user set a vertical range
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
             if (not yMinRange or not yMaxRange):
                 continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+            # file counting
             count3dr = (count3dr + 1)
             list3drInput.append(file)
 
@@ -232,7 +234,7 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
-        # treatment if user set a vertical range
+        # range filter when user set a vertical range
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
