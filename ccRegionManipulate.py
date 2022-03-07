@@ -3,19 +3,23 @@ import pathlib # create directories
 import shutil # copy files
 import time # process timer
 
-# change working directory to directory of this file, then return it
+# change working directory to directory of this script, then store it in variable
 os.chdir(os.path.dirname(__file__))
 workingDirectory = os.getcwd()
 
 terminalSize = os.get_terminal_size()
 print("=" * terminalSize.columns)
 print("ccRegionManipulate for Cubic Chunks 1.12.2.")
-print("Copy, move or delete Minecraft regions in specific range.")
-print("to use this program, please put this script into your world folder")
+print("Copy, move or delete (.2dr, .3dr) region files within user specified 2d region bounding box range.")
 print("Make sure you have backups before doing anything!")
-print("You might need to fix the light using cc worldfixer after some operations.")
+print("CC Worldfixer might be needed to fix light after certain operations.")
 
-# loop for user choosing from operation modes
+
+### 1. USER INPUT STEPS WITH EXTRA INFORMATION
+
+
+#! maybe add a some notification message if the script haven't found any ./region2d ./region3d input folders?
+# user input to choose operation mode
 print("=" * terminalSize.columns)
 print(f"Possible operation modes:")
 print("'c' = copy regions | 'm' = move regions | 'd' = delete regions")
@@ -36,25 +40,26 @@ while True:
     else:
         print(f"Please select a valid operation mode!")
 
-# loop function to check for non-integer input
+# function to check for non-integer input
 def integerInput(text):
     while True:
         try:
             return int(input(text))
         except ValueError:
-            print("Whole number, please")
+            print("This must be a whole number!")
             continue
 
-# loop, user input for X and Z 2dr range
+# user input for X and Z 2d region range (one 2dr region = 512x512 blocks rectangle.)
 print("-" * terminalSize.columns)
-print("Input coordinates in 2dr space (Minecraft region coordinates):")
+print("input coordinates in 2dr space range (one 2dr = 512x512 blocks size area):")
 while True:
     xMin = integerInput("min x: ")
     xMax = integerInput("max x: ")
     zMin = integerInput("min z: ")
     zMax = integerInput("max z: ")
+    # conditions to check if X and Z bounding box input is valid
     if xMin > xMax and zMin > zMax:
-        print("'min x' can't be more than 'max x'")
+        print("'min x' can't be more than 'max x' and")
         print("'min z' can't be more than 'max z'")
         continue
     if xMin > xMax:
@@ -64,22 +69,23 @@ while True:
         print("'min z' can't be more than 'max z'")
         continue
     if xMin <= xMax and zMin <= zMax:
-        break
+        break   
 
-# prints size of X and Z 2dr range
+# print X and Z size in 2dr range
 xBoundingBox = abs((xMax - xMin) + 1)
 zBoundingBox = abs((zMax - zMin) + 1)
-print(f"The bounding box is '{xBoundingBox}x{zBoundingBox}' large in 2dr space")
+print(f"The bounding box is '{xBoundingBox}x{zBoundingBox}' large in 2dr space (Minecraft region coordinates)")
 
-# optional user input for Y 3dr range
+# [optional] user input for Y in 3d region range (one 3dr = 256x256x256 blocks cube)
 print("-" * terminalSize.columns)
 verticalLimit = False
-if input("[optional]: Do you want to set vertical range in 3dr (cube) space? (n/y)\n(if you don't, all cubes vertically will be processed) ") == "y":
+if input("[optional]: Do you want to set vertical range in 3d region space? (n/y)\n(if you don't, all cubes vertically will be processed) ") == "y":
     print("Input vertical coordinates in 3dr space:")
-    print("(1 cube unit in 3dr space is 256 blocks)")
+    print("(one 3dr cube is 256x256x256 blocks)")
     while True:
         yMin = integerInput("min y: ")
-        yMax = integerInput("max y: ")            
+        yMax = integerInput("max y: ")
+        # condition to check if Y bounding box input is valid           
         if yMin > yMax:
             print("'min y' can't be more than 'max y'")
             continue
@@ -87,37 +93,43 @@ if input("[optional]: Do you want to set vertical range in 3dr (cube) space? (n/
             verticalLimit = True
             break
     
-# prints size of Y 3dr range
+# prints Y size in 3dr range
 if verticalLimit == True:
     yBoundingBox = abs((yMax - yMin) + 1) 
     print(f"Vertical limit range was set as: '{yBoundingBox}' 3dr cubes.\nminimum y 3dr: '{yMin}'.\n maximum y 3dr: '{yMax}'.")
 else:
     print("Vertical range limit was not set")
 
-print(f"verticalLimit is: {verticalLimit}")
 
-# define variables for counting processed files
+### 2. MAKE LISTS OF FILES NAMES FROM FILTERED INPUT DIRECTORY AND ALL FILES FROM OUTPUT DIRECTORY
+###    COUNT NUMBER OF FILES TO BE PROCESSED
+
+
+#TODO implement file comparision using hashtables for faster processing! 
+#! OMG THIS IS A MESS ;_;
+# list of existing files within user specified range that will be processed
+list2drInput = []
+list3drInput = []
+
+# list of all existing files in the output directories
+list2drOutput = []
+list3drOutput = []
+
+# declare variables for the number of processed files
 count2dr = 0
 count3dr = 0
 
-# define lists for looping from user input range
-list2drInput = []
-list3drInput = []
-# get list of files from the input directories # ! apply .2dr and 3.dr filter?
+# get list of all files in the input directories
 files2dr = os.listdir("./region2d")
 files3dr = os.listdir("./region3d")
 
-# define Ouput lists
-list2drOutput = []
-list3drOutput = []
-# get list of files from the output directories # ! apply .2dr and 3.dr filter?
+# check if output directories exist, then get list of files from the output directories
 if os.path.isfile("./region2dOutput"):
     list2drOutput = os.listdir("./region2dOutput")
 if os.path.isfile("./region3dOutput"):
     list3drOutput = os.listdir("./region3dOutput")
 
-
-# loop 2dr files, count files
+# count how many 2dr files will be processed before task starts
 for file in files2dr:
     if (file.endswith(".2dr")):
         split = file.split(".")
@@ -128,11 +140,10 @@ for file in files2dr:
         zMinRange = (z >= zMin)
         zMaxRange = (z <= zMax)
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
-            # file counting
             count2dr = (count2dr + 1)
             list2drInput.append(file)
 
-# loop 3dr files, count files
+# count how many 3dr files will be processed before task starts
 for file in files3dr:
     if (file.endswith(".3dr")):
         split = file.split(".")
@@ -143,18 +154,18 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
-        # range filter when user set a vertical range
+        # check if vertical range limit was set by user, if true, count within range
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
             if (not yMinRange or not yMaxRange):
                 continue
         if (xMinRange and xMaxRange and zMinRange and zMaxRange):
-            # file counting
             count3dr = (count3dr + 1)
             list3drInput.append(file)
 
-# creates directories for output when copy or move mode was selected
+# create output directories for copy and move modes
+# TODO: this could be split to ./region2dCopied or ./region2dMoved depend on the operation mode
 if operationMode == "c" or operationMode == "m":
     files2drOutput = pathlib.Path("./region2dOutput")
     files3drOutput = pathlib.Path("./region3dOutput")
@@ -162,18 +173,23 @@ if operationMode == "c" or operationMode == "m":
     pathlib.Path(files3drOutput).mkdir(parents=True, exist_ok=True)
 
 print("-" * terminalSize.columns)
-# print looped files from the lists that will be processed
-print(f"Total number of 2dr files to be processed: {count2dr}")
-print(f"Total number of 3dr files to be processed: {count3dr}")      
+# print the count of total amount of files to be processed
+print(f"Total amount of 2dr files to be processed: {count2dr}")
+print(f"Total amount of 3dr files to be processed: {count3dr}")
 
-# check for existing files in output directories and prompt user
-print("-" * terminalSize.columns)
+
+### 3. PROMPT TO CONFIRM WHEN ANY FILES WILL BE OVERWRITTEN
+
+
+# check for existing files in output directories and prompt user if they want to overwrite files
+#! this whole triggers even when lists are not empty, which is wrong... idk what to do
+"""
 if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
     print("Same files were found in input and output directories. ('./region2dOutput/' and './region3dOutput/'.")
     print("Files will be overwritten.")
-    # prompts to print all files that will be overwritten # ! add condition when there are actuall files to be overwritten
+    # prompts to print all files that will be overwritten
     if input(f"Do you want to print list of files that will be overwritten? (the list may be very long) (y/n) ") == "y":
-        # 2dr list 
+        # 2dr file match list 
         matches2dr=[]
         for item_a in list2drInput:
             for item_b in list2drOutput:
@@ -181,7 +197,7 @@ if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
                     matches2dr.append(item_a)
         print("2dr files:")
         print(matches2dr)
-        # 3dr list
+        # 3dr file match list
         matches3dr=[]
         for item_a in list3drInput:
             for item_b in list3drOutput:
@@ -189,15 +205,18 @@ if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
                     matches3dr.append(item_a)
         print("3dr files:")
         print(matches3dr)
+"""
 
-# prompt to start the file processing
-print("-" * terminalSize.columns)
+### 4. TASK PROCESSING
+
+
+# confirm prompt to start the file processing
+print("=" * terminalSize.columns)
 print(f"The {operationModeString} operation will be executed in '{workingDirectory}'")
 if input(f"Do you want to start the {operationModeString} process? (y/n) ") != "y":
     print("Program terminated.")
     exit()
-
-# process timer
+#! process timer (fixme: shows incorrect time! idk why)
 startTime = time.process_time()    
 
 # processing of 2dr files
@@ -234,7 +253,7 @@ for file in files3dr:
         xMaxRange = (x >> 1 <= xMax)
         zMinRange = (z >> 1 >= zMin)
         zMaxRange = (z >> 1 <= zMax)
-        # range filter when user set a vertical range
+        # check if vertical range limit was set by user, if true, process within range
         if verticalLimit == True:
             yMinRange = (y >= yMin)
             yMaxRange = (y <= yMax)
@@ -253,7 +272,12 @@ for file in files3dr:
                 print(f"Deleting: {x}.{y}.{z}.3dr")
                 os.remove(f"./region3d/{x}.{y}.{z}.3dr")
 
-# task information at the end
+
+### 5. INFO ABOUT FINISHED TASK
+
+
+# task duration info at the end
+#! process timer (fixme: shows incorrect time! idk why)
 elapsedTime = time.process_time() - startTime
 formattedTime = time.strftime("%H:%M:%S", time.gmtime(elapsedTime))
 print(f"2dr files processed: {count2dr}, 3dr files processed: {count3dr}")
