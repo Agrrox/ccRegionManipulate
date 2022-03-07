@@ -17,9 +17,9 @@ if you on macOS or Linux:
 
 ## Use of the program:
 1. choose one of the operation mods by typing:
-- `c` = copy 
-- `m` = move 
-- `d` = delete
+- `c` = copy regions (to newly created directories
+- `m` = move regions (to newly created directories
+- `d` = delete regions
 
 2. input coordinates in 2dr space area (in Minecraft Region coordinates)
 - `minimum X`
