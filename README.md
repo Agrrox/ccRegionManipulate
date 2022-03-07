@@ -3,11 +3,11 @@ a user-friendly python script which allows you to copy, move or delete region fi
 
 *This script is only for the 1.12.2 [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.*
 
-## Prequisites:
+## Prequisites
 - recent version of [Python 3](https://www.python.org/)
 
 
-## Installation:
+## Installation
 - place the script inside your world folder that you want to process
 - run the script from command-line interface:
 
@@ -17,8 +17,7 @@ if you on macOS or Linux:
 
 ```python3 ccRegionManipulate.py``` - (mac comes with pre-installed python 2 that is not sufficient, get [Python 3](https://www.python.org/))
 
-## Usage:
-<details open> <summary></summary>
+## Usage
 
 **1. choose operation mode:**
 - `c` - to copy regions into `./region2dOutput` and `./region3dOutput`
@@ -38,9 +37,8 @@ if you on macOS or Linux:
    - `maximum Y`
 
 **4. confirm your selection and start processing.**
-</details>
 
-##  Example of use:
+##  Example of use
 
 <details> <summary></summary> 
 
