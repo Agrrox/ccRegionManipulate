@@ -17,12 +17,15 @@ if you on macOS or Linux:
 ```python3 ccRegionManipulate.py``` - (built-in python2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
 
 ### Usage
-- choose one of the operation mods, either `copy` `move` or `delete`
-- input `minimum and maximum X and Z` coordinates in 2dr space area (in Minecraft Region coordinates) which will be processed by the program
-- [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
+1. choose one of the operation mods:
+c =`copy` 
+m =`move` 
+d =`delete`
+2. input `minimum and maximum X and Z` coordinates in 2dr space area (in Minecraft Region coordinates)
+3. [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
 
-##  Example of usage of the program
-<details> <summary>SPOILER</summary> 
+##  Example of program use:
+<details> <summary></summary> 
 
   ```
 user$ python3 /users/username/minecraft/New World/ccRegionManipulate_mc1.12.2.py 
@@ -57,5 +60,4 @@ The copy operation will be executed in '/users/username/minecraft/New World/'
 Do you want to start the copy process? (y/n) n
 
 ```
-
 </details>
