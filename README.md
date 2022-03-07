@@ -23,7 +23,7 @@ if you on macOS or Linux:
 - `m` - to move regions into `./region2dOutput` and `./region3dOutput`
 - `d` - to delete regions
 
-**2. input coordinates in 2dr space range (in Minecraft Region coordinates):**
+**2. input coordinates in 2dr space range (MC Region coordinates, 512x512 square):**
 - `minimum X`
 - `maximum X` 
 - `minimum Z`
