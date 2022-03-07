@@ -6,7 +6,7 @@ a user-friendly python script which allows you to copy, move or delete region fi
 
 
 ## Starting the program:
-- place the script inside your world folder (same folder that contains region2d and region3d)
+- place the script into folder of your world (script in same folder that contain region2d and region3d folders)
 - run the script from command-line interface by:
 
 ```python ccRegionManipulate.py```
