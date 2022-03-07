@@ -65,3 +65,6 @@ Do you want to start the copy process? (y/n) n
 
 ```
 </details>
+
+##  TODO
+- add option to choose between 2dr and 3dr range.
