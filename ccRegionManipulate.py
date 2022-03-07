@@ -17,8 +17,7 @@ print("CC Worldfixer might be needed to fix light after certain operations.")
 
 ### 1. USER INPUT STEPS WITH EXTRA INFORMATION
 
-
-#! maybe add a some notification message if the script haven't found any ./region2d ./region3d input folders?
+#TODO maybe add a some notification message if the script haven't found any ./region2d ./region3d input folders?
 # user input to choose operation mode
 print("=" * terminalSize.columns)
 print(f"Possible operation modes:")
@@ -85,7 +84,7 @@ if input("[optional]: Do you want to set vertical range in 3d region space? (n/y
     while True:
         yMin = integerInput("min y: ")
         yMax = integerInput("max y: ")
-        # condition to check if Y bounding box input is valid           
+        # condition to check if Y bounding box input is valid
         if yMin > yMax:
             print("'min y' can't be more than 'max y'")
             continue
@@ -104,9 +103,7 @@ else:
 ### 2. MAKE LISTS OF FILES NAMES FROM FILTERED INPUT DIRECTORY AND ALL FILES FROM OUTPUT DIRECTORY
 ###    COUNT NUMBER OF FILES TO BE PROCESSED
 
-
 #TODO implement file comparision using hashtables for faster processing! 
-#! OMG THIS IS A MESS ;_;
 # list of existing files within user specified range that will be processed
 list2drInput = []
 list3drInput = []
@@ -135,11 +132,11 @@ for file in files2dr:
         split = file.split(".")
         x = int(split[0])
         z = int(split[1])
-        xMinRange = (x >= xMin)
-        xMaxRange = (x <= xMax)
-        zMinRange = (z >= zMin)
-        zMaxRange = (z <= zMax)
-        if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+        isXMinRange = (x >= xMin)
+        isXMaxRange = (x <= xMax)
+        isZMinRange = (z >= zMin)
+        isZMaxRange = (z <= zMax)
+        if (isXMinRange and isXMaxRange and isZMinRange and isZMaxRange):
             count2dr = (count2dr + 1)
             list2drInput.append(file)
 
@@ -150,17 +147,17 @@ for file in files3dr:
         x = int(split[0])
         y = int(split[1])
         z = int(split[2])
-        xMinRange = (x >> 1 >= xMin)
-        xMaxRange = (x >> 1 <= xMax)
-        zMinRange = (z >> 1 >= zMin)
-        zMaxRange = (z >> 1 <= zMax)
+        isXMinRange = (x >> 1 >= xMin)
+        isXMaxRange = (x >> 1 <= xMax)
+        isZMinRange = (z >> 1 >= zMin)
+        isZMaxRange = (z >> 1 <= zMax)
         # check if vertical range limit was set by user, if true, count within range
         if verticalLimit == True:
-            yMinRange = (y >= yMin)
-            yMaxRange = (y <= yMax)
-            if (not yMinRange or not yMaxRange):
+            isYMinRange = (y >= yMin)
+            isYMaxRange = (y <= yMax)
+            if (not isYMinRange or not isYMaxRange):
                 continue
-        if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+        if (isXMinRange and isXMaxRange and isZMinRange and isZMaxRange):
             count3dr = (count3dr + 1)
             list3drInput.append(file)
 
@@ -180,16 +177,11 @@ print(f"Total amount of 3dr files to be processed: {count3dr}")
 
 ### 3. PROMPT TO CONFIRM WHEN ANY FILES WILL BE OVERWRITTEN
 
-
 # check for existing files in output directories and prompt user if they want to overwrite files
-#! this whole triggers even when lists are not empty, which is wrong... idk what to do
-"""
-if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
-    print("Same files were found in input and output directories. ('./region2dOutput/' and './region3dOutput/'.")
-    print("Files will be overwritten.")
+if os.listdir("./region2dOutput") != [] and os.listdir("./region3dOutput") != []:
     # prompts to print all files that will be overwritten
     if input(f"Do you want to print list of files that will be overwritten? (the list may be very long) (y/n) ") == "y":
-        # 2dr file match list 
+        # 2dr file match list
         matches2dr=[]
         for item_a in list2drInput:
             for item_b in list2drOutput:
@@ -205,10 +197,11 @@ if os.listdir("./region2dOutput") and os.listdir("./region3dOutput") != []:
                     matches3dr.append(item_a)
         print("3dr files:")
         print(matches3dr)
-"""
+        print("Same files were found in input and output directories. ('./region2dOutput/' and './region3dOutput/'.")
+        print("Files will be overwritten.")
+
 
 ### 4. TASK PROCESSING
-
 
 # confirm prompt to start the file processing
 print("=" * terminalSize.columns)
@@ -216,8 +209,9 @@ print(f"The {operationModeString} operation will be executed in '{workingDirecto
 if input(f"Do you want to start the {operationModeString} process? (y/n) ") != "y":
     print("Program terminated.")
     exit()
-#! process timer (fixme: shows incorrect time! idk why)
-startTime = time.process_time()    
+
+# start the task timer
+startTime = time.time()
 
 # processing of 2dr files
 for file in files2dr:
@@ -225,11 +219,11 @@ for file in files2dr:
         split = file.split(".")
         x = int(split[0])
         z = int(split[1])
-        xMinRange = (x >= xMin)
-        xMaxRange = (x <= xMax)
-        zMinRange = (z >= zMin)
-        zMaxRange = (z <= zMax)
-        if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+        isXMinRange = (x >= xMin)
+        isXMaxRange = (x <= xMax)
+        isZMinRange = (z >= zMin)
+        isZMaxRange = (z <= zMax)
+        if (isXMinRange and isXMaxRange and isZMinRange and isZMaxRange):
             if operationMode == "c":
                 print(f"Copying: {x}.{z}.2dr")
                 shutil.copy(f"./region2d/{x}.{z}.2dr",
@@ -249,17 +243,17 @@ for file in files3dr:
         x = int(split[0])
         y = int(split[1])
         z = int(split[2])
-        xMinRange = (x >> 1 >= xMin)
-        xMaxRange = (x >> 1 <= xMax)
-        zMinRange = (z >> 1 >= zMin)
-        zMaxRange = (z >> 1 <= zMax)
+        isXMinRange = (x >> 1 >= xMin)
+        isXMaxRange = (x >> 1 <= xMax)
+        isZMinRange = (z >> 1 >= zMin)
+        isZMaxRange = (z >> 1 <= zMax)
         # check if vertical range limit was set by user, if true, process within range
         if verticalLimit == True:
-            yMinRange = (y >= yMin)
-            yMaxRange = (y <= yMax)
-            if (not yMinRange or not yMaxRange):
+            isYMinRange = (y >= yMin)
+            isYMaxRange = (y <= yMax)
+            if (not isYMinRange or not isYMaxRange):
                 continue
-        if (xMinRange and xMaxRange and zMinRange and zMaxRange):
+        if (isXMinRange and isXMaxRange and isZMinRange and isZMaxRange):
             if operationMode == "c":
                 print(f"Copying: {x}.{y}.{z}.3dr")
                 shutil.copy(f"./region3d/{x}.{y}.{z}.3dr",
@@ -275,11 +269,10 @@ for file in files3dr:
 
 ### 5. INFO ABOUT FINISHED TASK
 
-
 # task duration info at the end
-#! process timer (fixme: shows incorrect time! idk why)
-elapsedTime = time.process_time() - startTime
+elapsedTime = time.time() - startTime
 formattedTime = time.strftime("%H:%M:%S", time.gmtime(elapsedTime))
 print(f"2dr files processed: {count2dr}, 3dr files processed: {count3dr}")
 print("Elapsed time: " + formattedTime)
 print("Program has finished...")
+
