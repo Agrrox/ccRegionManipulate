@@ -12,9 +12,9 @@ This script is only for the __1.12.2__ [Cubic Chunks](https://github.com/OpenCub
 
 ```python ccRegionManipulate.py```
 
-or:
+if you on macOS or Linux:
 
-```python3 ccRegionManipulate.py``` - (this is is especially true for macs, where you also need to install [Python 3](https://www.python.org/))
+```python3 ccRegionManipulate.py``` - (built-in python2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
 
 ### Usage
 - choose one of the operation mods, either `copy` `move` or `delete`
