@@ -42,7 +42,7 @@ if you on macOS or Linux:
 
 ##  Example of use:
 
-<details open> <summary></summary> 
+<details> <summary></summary> 
 
   ```
 user$ python3 /users/username/minecraft/New World/ccRegionManipulate_mc1.12.2.py 
