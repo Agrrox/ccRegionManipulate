@@ -57,7 +57,7 @@ min z: 10
 max z: 300
 The bounding box is '181x291' large in 2dr space
 --------------------------------------------------------------------------------
-[optional]: Do you want to set vertical range in 3dr (cube) space? (n/y)
+[optional]: Do you want to set vertical range in 3dr (256x256 cube) space? (n/y)
 (if you don't, all cubes vertically will be processed) n
 Vertical range limit was not set
 --------------------------------------------------------------------------------
