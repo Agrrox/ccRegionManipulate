@@ -1,5 +1,5 @@
 # ccRegionManipulate
-a user-friendly python scripts which allows you to copy, move or delete region files (2dr + 3dr) in 1.12.2 cubic chunks worlds within specified bounding box range.     __This script is only for the 1.12.2 [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.__
+a user-friendly python scripts which allows you to copy, move or delete region files (2dr + 3dr) in a 1.12.2 Cubic Chunks worlds within specified bounding box range.     __This script is only for the 1.12.2 [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.__
 
 ## Requirements:
 - recent version of Python 3
