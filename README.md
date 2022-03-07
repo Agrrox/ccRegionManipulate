@@ -23,13 +23,13 @@ if you on macOS:
 - `m` = move regions (to `./region2dOutput` and `./region3dOutput`)
 - `d` = delete regions
 
-**2. input coordinates in 2dr space area (in Minecraft Region coordinates):**
+**2. input coordinates in 2dr space range (in Minecraft Region coordinates):**
 - `minimum X`
 - `maximum X` 
 - `minimum Z`
 - `maximum Z`
 
-**3. [optional] set vertical range in 3dr (256x256 cube) space:**
+**3. [optional] set vertical range in 3dr (256x256 cube) space range:**
 - `n` if you want process everything from top to bottom.
 - `y` if you want to set vertical limit:
    - `minimum Y`
