@@ -13,7 +13,7 @@ a user-friendly python script which allows you to copy, move or delete region fi
 
 if you on macOS or Linux:
 
-```python3 ccRegionManipulate.py``` - (built-in python 2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
+```python3 ccRegionManipulate.py``` - (mac comes in with built-in python 2, but its not sufficient, install recent version of [Python 3](https://www.python.org/))
 
 ## Use of the program:
 1. choose one of the operation mods by typing:
