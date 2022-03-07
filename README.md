@@ -15,7 +15,7 @@ if you on macOS:
 
 ```python3 ccRegionManipulate.py``` - (mac comes with pre-installed python 2 that is not sufficient, get [Python 3](https://www.python.org/))
 
-## Use of the program:
+## Usage:
 1. choose one of the operation mods by typing:
 - `c` = copy regions (to `./region2dOutput` and `./region3dOutput`)
 - `m` = move regions (to `./region2dOutput` and `./region3dOutput`)
