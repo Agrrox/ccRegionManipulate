@@ -20,7 +20,7 @@ if you on macOS:
 
 **1. choose operation mode:**
 - `c` - to copy regions into `./region2dOutput` and `./region3dOutput`
-- `m` - to move regions into `./region2dOutput` and `./region3dOutput`)
+- `m` - to move regions into `./region2dOutput` and `./region3dOutput`
 - `d` - to delete regions
 
 **2. input coordinates in 2dr space range (in Minecraft Region coordinates):**
