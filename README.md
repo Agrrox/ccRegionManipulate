@@ -1,29 +1,31 @@
 # ccRegionManipulate
-a user-friendly python scripts which allow you to copy, move or delete regions (2dr + 3dr files) in 1.12.2 cubic chunks worlds within a user's specified range of bounding boxe. 
-This script is only for the __1.12.2__ [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.
+a user-friendly python scripts which allow you to copy, move or delete regions (2dr + 3dr files) in 1.12.2 cubic chunks worlds within a user's specified range of bounding boxe.     __This script is only for the 1.12.2 [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.__
 
 ## Requirements:
 - recent version of Python 3
 
 
 ## Starting the program:
-- place the script into your world folder
-- run the script from console by:
+- place the script inside your world folder (same folder that contains region2d and region3d)
+- run the script from command-line interface by:
 
 ```python ccRegionManipulate.py```
 
 if you on macOS or Linux:
 
-```python3 ccRegionManipulate.py``` - (built-in python2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
+```python3 ccRegionManipulate.py``` - (built-in python 2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
 
 ## Use of the program:
-1. choose one of the operation mods:
-```
-c =`copy` 
-m =`move` 
-d =`delete`
-```
-2. input `minimum and maximum X and Z` coordinates in 2dr space area (in Minecraft Region coordinates)
+1. choose one of the operation mods by typing:
+- `c` = copy 
+- `m` = move 
+- `d` = delete
+
+2. input coordinates in 2dr space area (in Minecraft Region coordinates)
+- `minimum X`
+- `maximum X` 
+- `minimum Z`
+- `maximum Z` 
 3. [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
 
 ##  Example of program use:
