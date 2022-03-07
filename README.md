@@ -19,9 +19,9 @@ if you on macOS:
 <details open> <summary></summary>
 
 **1. choose operation mode:**
-- `c` = copy regions (to `./region2dOutput` and `./region3dOutput`)
-- `m` = move regions (to `./region2dOutput` and `./region3dOutput`)
-- `d` = delete regions
+- `c` - to copy regions into `./region2dOutput` and `./region3dOutput`
+- `m` - to move regions into `./region2dOutput` and `./region3dOutput`)
+- `d` - to delete regions
 
 **2. input coordinates in 2dr space range (in Minecraft Region coordinates):**
 - `minimum X`
