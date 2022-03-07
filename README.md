@@ -29,7 +29,7 @@ if you on macOS:
 - `minimum Z`
 - `maximum Z`
 
-**3. [optional] choose vertical bounding box range:**
+**3. [optional] set vertical range in 3dr (cube) space:**
 - `n` if you want process everything from top to bottom.
 - `y` if you want to set vertical limit:
    - `minimum Y`
