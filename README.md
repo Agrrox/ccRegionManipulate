@@ -23,13 +23,13 @@ if you on macOS or Linux:
 - `m` - to move regions into `./region2dOutput` and `./region3dOutput`
 - `d` - to delete regions
 
-**2. input coordinates in 2dr space range (MC Region coordinates, 512x512 square):**
+**2. input coordinates in 2dr space range (MC Region coordinates, 512x512 squares):**
 - `minimum X`
 - `maximum X` 
 - `minimum Z`
 - `maximum Z`
 
-**3. [optional] set vertical range in 3dr space range (256x256x256 cube):**
+**3. [optional] set vertical range in 3dr space range (256x256x256 cubes):**
 - `n` if you want process everything from top to bottom.
 - `y` if you want to set vertical limit:
    - `minimum Y`
@@ -57,7 +57,7 @@ min z: 10
 max z: 300
 The bounding box is '181x291' large in 2dr space
 --------------------------------------------------------------------------------
-[optional]: Do you want to set vertical range in 3dr (256x256x256 cube) space? (n/y)
+[optional]: Do you want to set vertical range in 3dr (256x256x256 cubes) space? (n/y)
 (if you don't, all cubes vertically will be processed) n
 Vertical range limit was not set
 --------------------------------------------------------------------------------
