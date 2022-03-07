@@ -16,29 +16,34 @@ if you on macOS:
 ```python3 ccRegionManipulate.py``` - (mac comes with pre-installed python 2 that is not sufficient, get [Python 3](https://www.python.org/))
 
 ## Usage:
-1. choose one of the operation mods by typing:
+<details open> <summary></summary>
+
+**1. choose operation mode:**
 - `c` = copy regions (to `./region2dOutput` and `./region3dOutput`)
 - `m` = move regions (to `./region2dOutput` and `./region3dOutput`)
 - `d` = delete regions
 
-2. input coordinates in 2dr space area (in Minecraft Region coordinates)
+**2. input coordinates in 2dr space area (in Minecraft Region coordinates):**
 - `minimum X`
 - `maximum X` 
 - `minimum Z`
-- `maximum Z` 
-3. [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
+- `maximum Z`
+
+**3. [optional] choose vertical bounding box range:**
+- `n` if you want process everything from top to bottom.
+- `y` if you want to set vertical limit:
+   - `minimum Y`
+   - `maximum Y`
+
+**4. confirm your selection and start processing.**
+</details>
 
 ##  Example of use:
-<details> <summary></summary> 
+
+<details open> <summary></summary> 
 
   ```
 user$ python3 /users/username/minecraft/New World/ccRegionManipulate_mc1.12.2.py 
-================================================================================
-ccRegionManipulate for Cubic Chunks 1.12.2.
-Copy, move or delete Minecraft regions in specific range.
-to use this program, please put this script into your world folder
-Make sure you have backups before doing anything!
-You might need to fix the light using cc worldfixer after some operations.
 ================================================================================
 Possible operation modes:
 'c' = copy regions | 'm' = move regions | 'd' = delete regions
@@ -67,4 +72,8 @@ Do you want to start the copy process? (y/n) n
 </details>
 
 ##  TODO
+
+<details open> <summary></summary> 
+
 - add option to choose between 2dr and 3dr range.
+</details>
