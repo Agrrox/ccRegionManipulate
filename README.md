@@ -36,7 +36,7 @@ if you on macOS or Linux:
    - `minimum Y`
    - `maximum Y`
 
-**4. confirm your selection and start processing.**
+**4. confirm to start processing.**
 
 ##  Example of use
 
