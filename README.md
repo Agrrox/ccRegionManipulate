@@ -17,8 +17,8 @@ if you on macOS or Linux:
 
 ## Use of the program:
 1. choose one of the operation mods by typing:
-- `c` = copy regions (to newly created directories `./region2dOutput` and `./region3dOutput`)
-- `m` = move regions (to newly created directories `./region2dOutput` and `./region3dOutput`)
+- `c` = copy regions (to `./region2dOutput` and `./region3dOutput`)
+- `m` = move regions (to `./region2dOutput` and `./region3dOutput`)
 - `d` = delete regions
 
 2. input coordinates in 2dr space area (in Minecraft Region coordinates)
