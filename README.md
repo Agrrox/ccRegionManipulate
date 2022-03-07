@@ -28,7 +28,7 @@ if you on macOS or Linux:
 - `maximum Z` 
 3. [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
 
-##  Example of program use:
+##  Example of use:
 <details> <summary></summary> 
 
   ```
