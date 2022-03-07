@@ -64,7 +64,6 @@ Vertical range limit was not set
 Total number of 2dr files to be processed: 241
 Total number of 3dr files to be processed: 1670
 --------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 The copy operation will be executed in '/users/username/minecraft/New World/'
 Do you want to start the copy process? (y/n) n
 
