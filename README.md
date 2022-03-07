@@ -2,11 +2,11 @@
 a user-friendly python scripts which allow you to copy, move or delete regions (2dr + 3dr files) in 1.12.2 cubic chunks worlds within a user's specified range of bounding boxe. 
 This script is only for the __1.12.2__ [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.
 
-## Requirements
-- Python 3.x (recent versions)
+## Requirements:
+- recent version of Python 3
 
 
-## Starting the program
+## Starting the program:
 - place the script into your world folder
 - run the script from console by:
 
@@ -16,11 +16,13 @@ if you on macOS or Linux:
 
 ```python3 ccRegionManipulate.py``` - (built-in python2 is not sufficient, install recent version of [Python 3](https://www.python.org/))
 
-### Usage
+## Use of the program:
 1. choose one of the operation mods:
+```
 c =`copy` 
 m =`move` 
 d =`delete`
+```
 2. input `minimum and maximum X and Z` coordinates in 2dr space area (in Minecraft Region coordinates)
 3. [optional] choose vertical range limit, skip this with `no` if you want everything to be processed vertically from top to bottom.
 
