@@ -11,7 +11,7 @@ a user-friendly python script which allows you to copy, move or delete region fi
 
 ```python ccRegionManipulate.py```
 
-if you on macOS:
+if you on macOS or Linux:
 
 ```python3 ccRegionManipulate.py``` - (mac comes with pre-installed python 2 that is not sufficient, get [Python 3](https://www.python.org/))
 
