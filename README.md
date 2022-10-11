@@ -30,7 +30,7 @@ if you on macOS or Linux:
 - `minimum Z`
 - `maximum Z`
 
-**3. [optional] set vertical range in 3dr space range (256x256x256 cubes):**
+**3. [optional] set vertical range in 3dr space range (256x256x256 blocks):**
 - `n` if you want process everything from top to bottom.
 - `y` if you want to set vertical limit:
    - `minimum Y`
