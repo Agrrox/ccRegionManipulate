@@ -4,7 +4,7 @@ a user-friendly python script which allows you to copy, move or delete region fi
 *This script is only for the 1.12.2 [Cubic Chunks](https://github.com/OpenCubicChunks/CubicChunks) worlds.*
 
 ## Prequisites
-- recent version of [Python 3](https://www.python.org/)
+- [Python 3](https://www.python.org/)
 
 
 ## Installation
